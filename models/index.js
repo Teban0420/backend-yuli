@@ -7,4 +7,5 @@ Reserve.belongsTo(TypeVacation, {foreingKey: 'TypeVacationId'});
 Reserve.belongsTo(AboutUs, {foreingKey: 'AboutUsId'});
 
 module.exports = TypeVacation;
+module.exports = AboutUs;
 module.exports = Reserve;

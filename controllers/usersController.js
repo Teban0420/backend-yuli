@@ -2,11 +2,13 @@
 const TypeVacation = require('../models/TypeVacation.js');
 const AboutUs = require('../models/AboutUs.js');
 const Reserve = require('../models/index.js');
+const { sendEmail } = require('../helpers/email.js');
+
 
 exports.FormUser = async (req, res) => {
 
    try {
-    //    const type_vacation = await TypeVacation.findAll();
+     //   const type_vacation = await TypeVacation.findAll();
        const [type_vacation, aboutus] = await Promise.all([
             TypeVacation.findAll(),
             AboutUs.findAll(),
@@ -17,6 +19,7 @@ exports.FormUser = async (req, res) => {
             type_vacation,
             aboutus
         });
+
 
    } catch (error) {
 
@@ -29,41 +32,34 @@ exports.FormUser = async (req, res) => {
 
 exports.crearReserve = async (req, res, next) => {
 
-    const { dispuesto, email, first_name, last_name, area_code, phone_number, type_of_vacation,
-            many_travelers, number_of_rooms, type_accommodations, many_adults, many_children,
-           celebrating_something, destination_choice, defarting_from, departure_date,
-           return_date, date_flexibles, rent_a_car, need_transfers, desired_person_bucket,
-           travel_insurance, arrangements, anything_special,aboutuId
-          } = req.body;
+     try {
 
-    const reserve = await Reserve.create({
-          dispuesto,
-          email,
-          first_name,
-          last_name,
-          area_code,
-          phone_number,
-          type_of_vacation,
-          many_travelers,
-          number_of_rooms,
-          type_accommodations,
-          many_adults,
-          many_children,
-          celebrating_something,
-          destination_choice,
-          defarting_from,
-          departure_date,
-          return_date,
-          date_flexibles,
-          rent_a_car,
-          need_transfers,
-          desired_person_bucket,
-          travel_insurance,
-          arrangements,
-          anything_special,
-          aboutuId,    
-    });
+          const { dispuesto, email, first_name, last_name, area_code, phone_number, type_of_vacation,
+               many_travelers, number_of_rooms, type_accommodations, many_adults, many_children,
+              celebrating_something, destination_choice, defarting_from, departure_date,
+              return_date, date_flexibles, rent_a_car, need_transfers, desired_person_bucket,
+              travel_insurance, arrangements, anything_special,aboutuId
+             } = req.body;
 
-    res.status(200).json({msg: 'Creado correctamente'})
+          const reserve = await Reserve.create({dispuesto, email, first_name, last_name, area_code,
+                         phone_number, type_of_vacation, many_travelers, number_of_rooms, type_accommodations,
+                         many_adults, many_children, celebrating_something, destination_choice, defarting_from,
+                         departure_date, return_date, date_flexibles, rent_a_car, need_transfers, desired_person_bucket,
+                         travel_insurance, arrangements, anything_special, aboutuId,    
+               });  
 
+          sendEmail(reserve);      
+               
+          res.status(200).json({msg: 'Creado correctamente', reserve});
+
+          
+     } catch (error) {
+
+          res.status(500).json({
+               ok: false,
+               msg: 'Algo salio mal'
+           }); 
+     }
 }
+
+
