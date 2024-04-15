@@ -12,12 +12,11 @@ module.exports = function(){
 
     // rutas publicas
     router.get('/new_reserve', usersController.FormUser);
-    router.post('/new_reserve', usersController.crearReserve);
-    
+    router.post('/new_reserve', usersController.crearReserve);    
 
     // admin
-    // router.post('/login', adminController.autenticarAdmin);
-    // router.post('/crear-admin', adminController.crearAdmin);
+    router.post('/login', adminController.autenticarAdmin);
+    router.post('/crear-admin', adminController.crearAdmin);
     // router.get('/all', auth, adminController.AllUsers);
     // router.delete('/users/:id', auth, adminController.eliminarUser);
     // router.put('/llamar_user/:id', adminController.llamarUser);

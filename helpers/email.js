@@ -30,12 +30,13 @@ const sendEmail = async (datos) => {
             // enviar email
     await transport.sendMail({
         from: 'clear-destinations.com',
-        to: email, // a quien se envia
-        subject: 'New Reserve A Vacation',
+        to: 'yulietseda@clear-destinations.com', // a quien se envia
+        subject: 'New Quote Request',
         text: 'New Reserve A Vacation',
         html: `
             <p>Hi Yuli, have a new reserve a vacation</p>
             <p>${first_name} ${last_name}</p>
+            <p>${email}</p>
             <p>${area_code} ${phone_number}</p>
             <p>type_of_vacation ${type_of_vacation}</p>
             <p>many_travelers ${many_travelers}</p>
