@@ -14,7 +14,7 @@ const app = express();
 const conexionDB = async () => {
     try {
        await db.authenticate();   
-       db.sync() // crea la tabla
+       db.sync() // crea la tabla       
        console.log('Conexion Correcta a la base de datos');
        
    } catch (error) {
