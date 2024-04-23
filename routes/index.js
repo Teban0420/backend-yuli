@@ -17,8 +17,10 @@ module.exports = function(){
     // admin
     router.post('/login', adminController.autenticarAdmin);
     router.post('/crear-admin', adminController.crearAdmin);
-    // router.get('/all', auth, adminController.AllUsers);
-    // router.delete('/users/:id', auth, adminController.eliminarUser);
+    router.post('/new_offer', auth, adminController.newOffer);
+    router.get('/all_offers', auth, adminController.allOffers);
+    
+   
     // router.put('/llamar_user/:id', adminController.llamarUser);
 
     return router;

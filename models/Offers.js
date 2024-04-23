@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../config/db.js');
 
-const Offer = db.define('offer', {
+const Offer = db.define('offer', { 
 
     title: {
         type: Sequelize.DataTypes.STRING(40),
@@ -24,4 +24,4 @@ const Offer = db.define('offer', {
     },
 });
 
-module.exports = Offer;
+module.exports = Offer;  

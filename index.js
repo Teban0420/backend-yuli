@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 //Cors 
 const cors = require('cors');
+// const Offer = require('./models/Offers.js');
 
 // crear servidor
 const app = express();
@@ -14,7 +15,8 @@ const app = express();
 const conexionDB = async () => {
     try {
        await db.authenticate();   
-       db.sync() // crea la tabla       
+       db.sync() // crea la tabla   
+    //    Offer.sync()    
        console.log('Conexion Correcta a la base de datos');
        
    } catch (error) {

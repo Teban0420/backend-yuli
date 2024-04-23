@@ -1,6 +1,7 @@
 
 const jwt = require('jsonwebtoken');
 const Login = require('../models/Login.js');
+const Offer = require('../models/Offers.js');
 
 
 exports.crearAdmin = async (req, res, next) => {
@@ -96,19 +97,42 @@ exports.autenticarAdmin = async (req, res, next) => {
  
 // }
 
-// exports.llamarUser = async(req, res) => {
+exports.newOffer = async (req, res) => {
 
-//     const { id } = req.params;
+    const {title, description, dateStart, dateEnd, image } = req.body;
+
+    try {
+        
+        const offer = await Offer.create({
+            title, 
+            description, 
+            dateStart, 
+            dateEnd, 
+            image
+        });
     
-//     const usuario = await Usuarios.findByPk(id);
-//     if(!usuario){
-//         return res.status(400).json({msg: 'No existe el usuario'});        
-//     }
+        res.status(200).json({msg: 'Created'});
 
-//     usuario.llamado = !usuario.llamado;
-//     await usuario.save();
+    } catch (error) {
+        console.log(error)
+    }
 
-//     res.json({
-//         resultado: true
-//     })
-// }
+}
+
+exports.allOffers = async (req, res) => {
+
+    try {
+
+        const offers = await Offer.findAll()
+            
+        res.json({
+            ok: true,
+            offers            
+        });
+        
+    } catch (error) {
+        console.log(error)
+        
+    }
+
+}

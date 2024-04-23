@@ -17,7 +17,7 @@ module.exports = (req, res, next) => {
     let revisarToken;
 
     try {
-        revisarToken = jwt.verify(token, 'LLAVESECRETA');
+        revisarToken = jwt.verify(token, 'LLAVEULTRA_SUPERSECRET@');
         
     } catch (error) {
         console.log(error)
