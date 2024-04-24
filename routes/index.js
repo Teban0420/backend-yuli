@@ -19,6 +19,7 @@ module.exports = function(){
     router.post('/crear-admin', adminController.crearAdmin);
     router.post('/new_offer', auth, adminController.newOffer);
     router.get('/all_offers', auth, adminController.allOffers);
+    router.delete('/offer/:id', auth, adminController.deleteOffer);
     
    
     // router.put('/llamar_user/:id', adminController.llamarUser);

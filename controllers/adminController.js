@@ -136,3 +136,24 @@ exports.allOffers = async (req, res) => {
     }
 
 }
+
+exports.deleteOffer = async (req, res) => {
+
+    const { id } = req.params; 
+
+    try {
+
+        const offer = await Offer.findByPk(id);    
+
+        if(!offer){
+            return res.status(400).json({msg: 'No existe el usuario'});        
+        }
+
+        await offer.destroy();
+        res.status(200).json({msg: 'Registro Eliminado'})
+        
+    } catch (error) {
+        res.status(500).json({msg: 'Something Wrong'})
+    }
+   
+}
