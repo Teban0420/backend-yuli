@@ -19,7 +19,7 @@ const Offer = db.define('offer', {
         allowNull: false
     },
     dateEnd: {
-        type: Sequelize.DataTypes.DATE,
+        type: Sequelize.DataTypes.DATE, 
         allowNull: false
     },
 });

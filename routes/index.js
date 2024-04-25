@@ -13,6 +13,7 @@ module.exports = function(){
     // rutas publicas
     router.get('/new_reserve', usersController.FormUser);
     router.post('/new_reserve', usersController.crearReserve);    
+    router.get('/users_offers', usersController.userAllOffers);
 
     // admin
     router.post('/login', adminController.autenticarAdmin);

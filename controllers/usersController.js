@@ -3,6 +3,7 @@ const TypeVacation = require('../models/TypeVacation.js');
 const AboutUs = require('../models/AboutUs.js');
 const Reserve = require('../models/index.js');
 const { sendEmail } = require('../helpers/email.js');
+const Offer = require('../models/Offers.js');
 
 
 exports.FormUser = async (req, res) => {
@@ -60,6 +61,29 @@ exports.crearReserve = async (req, res, next) => {
                msg: 'Algo salio mal'
            }); 
      }
+}
+
+exports.userAllOffers = async (req, res) => {
+
+     try {
+
+          const offers = await  Offer.findAll()
+
+          res.json({
+               ok: true,
+               offers            
+          });
+          
+          
+     } catch (error) {
+          
+          res.status(500).json({
+               ok: false,
+               msg: 'Algo salio mal'
+           }); 
+          
+     }
+     
 }
 
 
